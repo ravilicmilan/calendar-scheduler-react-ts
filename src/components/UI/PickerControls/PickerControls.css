@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+.picker-controls {
+  @apply flex justify-between items-center w-full border-b;
+}
+.picker-control-left,
+.picker-control-right {
+  @apply flex justify-center items-center gap-1 cursor-pointer px-4 py-2 hover:bg-gray-300 transition-colors duration-300;
+}
+.picker-time-control {
+  @apply flex gap-1 justify-center items-center w-full;
+}
+.picker-time-control-inner {
+  @apply flex cursor-pointer hover:bg-gray-300 transition-colors duration-300;
+}
+.picker-time-control-title {
+  @apply px-1 py-0.5;
+}
+.picker-time-control-triangle-wrapper {
+  @apply flex flex-col justify-center items-center gap-1;
+}
+.picker-time-control-triangle-up,
+.picker-time-control-triangle-down {
+  @apply flex w-0 h-0 border-l-4 border-l-transparent border-r-transparent border-r-4;
+}
+.picker-time-control-triangle-up {
+  @apply border-b-8;
+}
+.picker-time-control-triangle-down {
+  @apply border-t-8;
+}
+.picker-controls-headings-wrapper {
+  @apply flex justify-around items-center w-full bg-blue-950;
+}
+.picker-controls-headings {
+  @apply text-white text-xs;
+}
+.picker-controls-title {
+  @apply text-sm;
+}

@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+.picker-wrapper {
+  @apply fixed flex flex-col justify-center items-center  rounded-md bg-white z-50 border shadow-lg shadow-black;
+}
+.picker-background {
+  @apply fixed inset-0 bg-transparent;
+}
+.picker-wrapper-large {
+  @apply w-100 h-60;
+}
+.picker-wrapper-small {
+  @apply w-30 h-60;
+}
+.picker-header {
+  @apply flex flex-col justify-center items-center w-full text-lg border-b-gray-300;
+}
+.picker-items-large {
+  @apply flex justify-between items-center flex-wrap w-full h-full;
+}
+.picker-items-small {
+  @apply flex flex-col justify-center items-center w-full h-full;
+}
+.picker-item-inline {
+  @apply flex flex-col justify-center items-center px-4 py-2 cursor-pointer hover:bg-gray-300 transition-colors duration-300;
+}
+.picker-item-inline-smaller {
+  @apply flex flex-col justify-center items-center px-2.5 py-1 cursor-pointer hover:bg-gray-300 transition-colors duration-300;
+}
+.picker-item-inline-grid {
+  @apply flex flex-col justify-center items-center px-2.5 py-0.5 cursor-pointer hover:bg-gray-300 transition-colors duration-300;
+}
+.picker-items-grid-date {
+  @apply grid grid-cols-7 grid-rows-6 w-full;
+}
+.picker-items-grid-month {
+  @apply grid grid-cols-4 grid-rows-3 w-full h-full;
+}
+.picker-items-grid-year {
+  @apply grid grid-cols-5 grid-rows-4 w-full h-full;
+}
+.picker-items-grid-time {
+  @apply grid grid-cols-6 grid-rows-4 w-full h-full;
+}
+.picker-item-block {
+  @apply flex flex-col justify-center items-center w-full px-4 py-2 cursor-pointer transition-colors duration-100;
+}
+.triangle-up {
+  @apply flex absolute  w-2 h-2 bg-white border-t border-l rotate-45;
+}
+
+.picker-selected-item {
+  @apply bg-gray-200 font-bold;
+}
+.picker-item-disabled {
+  @apply text-gray-400 cursor-not-allowed;
+}

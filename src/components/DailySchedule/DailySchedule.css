@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+.daily-schedule-wrapper {
+  @apply flex flex-col justify-center items-center w-full h-full;
+}
+.daily-schedule-list {
+  @apply flex flex-col justify-start items-center w-full relative;
+}
+.daily-schedule-item {
+  @apply flex justify-start items-start w-full min-h-8 border-b gap-3 py-1;
+}
+.daily-schedule-item-draggable {
+  @apply flex absolute justify-start items-center w-full min-h-8 gap-2 cursor-grab active:cursor-grabbing select-none z-10;
+}
+
+.daily-schedule-item-left {
+  @apply flex justify-start items-start h-full gap-1;
+}
+.daily-schedule-item-right {
+  @apply flex  justify-start items-start h-full relative;
+}
+.daily-schedule-item-right:hover .daily-schedule-item-buttons-wrapper {
+  opacity: 1;
+}
+.daily-schedule-empty-time {
+  @apply flex justify-start items-center w-full border-b min-h-8 border-b-gray-300;
+}
+.daily-schedule-list {
+  @apply flex flex-col justify-start items-center w-full relative;
+}
+.daily-schedule-item-left-filler {
+  @apply flex w-10 h-8 bg-transparent;
+}
+.daily-schedule-item-title {
+  @apply flex justify-between items-start h-full w-full px-1 pt-0.5;
+}
+.moving {
+  @apply opacity-50;
+}
+.stop {
+  @apply bg-red-800! border border-red-800!;
+}
+.mover {
+  @apply hidden absolute opacity-50 bg-sky-600 h-8 w-full z-20 cursor-grabbing  flex-col justify-center items-center;
+}
+.daily-schedule-buttons-wrapper {
+  @apply flex mb-1 justify-center items-center gap-4 w-full;
+}
+.daily-schedule-item-buttons-wrapper {
+  @apply flex justify-center items-center gap-1 opacity-0;
+}
+.daily-schedule-item-draggable:hover .daily-schedule-item-buttons-wrapper {
+  opacity: 1;
+}
+.daily-schedule-item-right-title-wrapper {
+  @apply flex flex-col justify-start items-start min-w-2xs;
+}

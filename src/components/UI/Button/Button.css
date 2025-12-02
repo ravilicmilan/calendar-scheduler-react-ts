@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+.btn {
+  @apply flex flex-col justify-center items-center rounded-sm border border-transparent cursor-pointer transition ease-in duration-100;
+}
+.btn-close {
+  @apply hover:bg-white hover:text-red-500 border-red-500 bg-red-500 text-white;
+}
+.btn-default {
+  @apply hover:bg-white hover:text-blue-500 border-blue-500 bg-blue-500 text-white;
+}
+.btn-left-arrow,
+.btn-right-arrow {
+  @apply bg-white text-blue-950 border-blue-950 hover:bg-blue-950 hover:text-white;
+}
+.btn-small {
+  @apply px-2 py-0 text-sm;
+}
+.btn-medium {
+  @apply px-2.5 py-0.5 text-lg;
+}
+.btn-large {
+  @apply px-4 py-2 text-3xl font-bold;
+}
+.btn-edit {
+  @apply bg-green-800 border-green-800 text-white hover:bg-white hover:text-green-800;
+}
+.btn-disabled {
+  @apply cursor-default bg-gray-200 text-gray-600 border-gray-600;
+}

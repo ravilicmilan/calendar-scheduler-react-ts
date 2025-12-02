@@ -1,0 +1,83 @@
+[
+  {
+    "meetingId": "1",
+    "title": "Project Kickoff",
+    "date": "2025-12-18",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "priority": "normal",
+    "description": "Initial meeting to discuss project scope and deliverables."
+  },
+  {
+    "meetingId": "2",
+    "title": "Design Review",
+    "date": "2025-12-19",
+    "startTime": "14:00",
+    "endTime": "15:30",
+    "priority": "normal",
+    "description": "Review of the initial design concepts with the design team."
+  },
+  {
+    "meetingId": "3",
+    "title": "Sprint Planning",
+    "date": "2025-12-22",
+    "startTime": "09:00",
+    "endTime": "10:30",
+    "priority": "normal",
+    "description": "Planning session for the upcoming development sprint."
+  },
+  {
+    "meetingId": "4",
+    "title": "Client Presentation",
+    "date": "2025-12-23",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "priority": "high",
+    "description": "Presentation of the project progress to the client."
+  },
+  {
+    "meetingId": "5",
+    "title": "Team Retrospective",
+    "date": "2025-12-24",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "priority": "low",
+    "description": "Reflecting on the past sprint and discussing improvements."
+  },
+  {
+    "meetingId": "6",
+    "title": "Staff meeting",
+    "date": "2025-12-25",
+    "startTime": "08:00",
+    "endTime": "09:00",
+    "priority": "high",
+    "description": "We need to figure out what to do about that marketing thing."
+  },
+  {
+    "meetingId": "7",
+    "title": "Marketing Strategy Meeting",
+    "date": "2025-12-25",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "priority": "high",
+    "description": "Discussing marketing strategies for the upcoming product launch."
+  },
+  {
+    "meetingId": "8",
+    "title": "Relax and chill",
+    "date": "2025-12-25",
+    "startTime": "16:00",
+    "endTime": "18:00",
+    "priority": "normal",
+    "description": "We should chill out after long and ardous meeting with marketing."
+  },
+  {
+    "meetingId": "9",
+    "title": "Dinner at restaurant",
+    "date": "2025-12-25",
+    "startTime": "19:00",
+    "endTime": "21:00",
+    "priority": "normal",
+    "description": "Got to go to that new fancy schmency restaurant."
+  }
+]

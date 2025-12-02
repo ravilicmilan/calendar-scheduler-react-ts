@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+.sub-header {
+  @apply flex justify-between items-center w-full px-4 mb-4;
+}
+
+.month-year {
+  @apply text-2xl font-semibold text-gray-800 dark:text-gray-200 cursor-pointer;
+}
+.header-month,
+.header-year {
+  @apply hover:bg-gray-300 px-2 py-1;
+}

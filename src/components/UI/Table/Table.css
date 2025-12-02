@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+.calendar-table {
+  @apply w-full border-collapse min-h-[720px] min-w-[980px];
+}
+.day-heading {
+  @apply p-2 text-center bg-blue-950 dark:bg-blue-950 text-white dark:text-white;
+}
+.calendar-table td {
+  @apply w-[140px] h-[120px]  cursor-pointer p-0.5;
+}
+.day {
+  @apply flex flex-col w-full h-full justify-start border rounded-sm items-end p-2 text-center text-gray-800 dark:text-gray-200 hover:border-blue-600;
+}
+.day-blank {
+  @apply bg-gray-200 dark:bg-gray-600 cursor-auto;
+}
+.current-day {
+  @apply bg-blue-100 border-2 font-bold;
+}
+.day-weekend {
+  @apply text-red-600;
+}

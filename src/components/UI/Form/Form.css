@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+.form-wrapper {
+  @apply flex flex-col w-full justify-center items-center rounded-2xl bg-white p-3;
+}
+.form-row {
+  @apply flex justify-between items-center w-full gap-4 mb-1;
+}
+
+.form-row input,
+.form-row textarea {
+  @apply border border-gray-400 rounded-sm;
+}
+.form-input,
+.form-textarea {
+  @apply w-full;
+}
+.form-textarea {
+  @apply min-h-32;
+}
+.form-priority,
+.form-time-picker,
+.form-date-picker {
+  @apply flex flex-col justify-center items-center px-2 py-1 hover:bg-gray-300 border border-gray-300 rounded-sm cursor-pointer;
+}
