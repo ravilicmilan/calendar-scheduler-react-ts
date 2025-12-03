@@ -20,7 +20,7 @@
   @apply px-2.5 py-0.5 text-lg;
 }
 .btn-large {
-  @apply px-4 py-2 text-3xl font-bold;
+  @apply px-2 py-1 text-base sm:px-4 sm:py-2 sm:text-3xl font-bold;
 }
 .btn-edit {
   @apply bg-green-800 border-green-800 text-white hover:bg-white hover:text-green-800;

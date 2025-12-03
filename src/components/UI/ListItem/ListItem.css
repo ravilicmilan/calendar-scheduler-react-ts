@@ -1,15 +1,13 @@
 @import 'tailwindcss';
+
 .list-item {
   @apply flex justify-center items-center 
   rounded-sm max-w-30 
-  w-full h-6 text-sm;
+  w-full h-auto text-sm;
 }
 .list-item-title {
-  @apply text-[12px];
+  @apply text-[8px] lg:text-[12px] md:text-[10px] sm:text-[8px] py-0.5 sm:py-1;
 }
 .truncate-text {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  @apply truncate text-ellipsis overflow-hidden min-w-0 whitespace-break-spaces sm:whitespace-nowrap;
 }

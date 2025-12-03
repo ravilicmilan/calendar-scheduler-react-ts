@@ -40,9 +40,9 @@ export default function Table() {
 
   const renderTableHeading = () => {
     return DAYS.map((day) => (
-      <th className='day-heading' key={day}>
+      <span className='day-heading' key={day}>
         {day}
-      </th>
+      </span>
     ));
   };
 
@@ -110,9 +110,11 @@ export default function Table() {
 
           totalBlankDays++;
           days.push(
-            <td key={day}>
-              <div className={blankDayClasses}>{str}</div>
-            </td>
+            <div key={day}>
+              <div className={blankDayClasses}>
+                <span className='day-of-month'>{str}</span>
+              </div>
+            </div>
           );
           continue;
         }
@@ -123,41 +125,45 @@ export default function Table() {
           year === currentYear
         ) {
           days.push(
-            <td key={day}>
+            <div key={day}>
               <div
                 onClick={() => {
                   handleDayClick(dayOfMonth);
                 }}
                 className={currentDayClasses}
               >
-                <span>{dayOfMonth}</span>
+                <span className='day-of-month'>{dayOfMonth}</span>
                 {scheduleForDay.length > 0 && (
                   <List schedule={scheduleForDay} date={dateString} />
                 )}
               </div>
-            </td>
+            </div>
           );
           continue;
         }
 
         days.push(
-          <td key={day}>
+          <div key={day}>
             <div
               onClick={() => {
                 handleDayClick(dayOfMonth);
               }}
               className={dayClasses}
             >
-              <span>{dayOfMonth}</span>
+              <span className='day-of-month'>{dayOfMonth}</span>
               {scheduleForDay.length > 0 && (
                 <List schedule={scheduleForDay} date={dateString} />
               )}
             </div>
-          </td>
+          </div>
         );
       }
       if (totalBlankDays < 7) {
-        weeks.push(<tr key={week}>{days}</tr>);
+        weeks.push(
+          <div className='table-row' key={week}>
+            {days}
+          </div>
+        );
       }
     }
     return weeks;
@@ -165,12 +171,12 @@ export default function Table() {
 
   const renderTable = () => {
     return (
-      <table className='calendar-table'>
-        <thead>
-          <tr>{renderTableHeading()}</tr>
-        </thead>
-        <tbody>{renderTableBody()}</tbody>
-      </table>
+      <div className='calendar-table'>
+        <div className='table-heading'>
+          <div className='table-row'>{renderTableHeading()}</div>
+        </div>
+        <div>{renderTableBody()}</div>
+      </div>
     );
   };
 

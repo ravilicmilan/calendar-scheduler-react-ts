@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 .calendar-wrapper {
-  @apply flex flex-col justify-center items-center  bg-white dark:bg-gray-700 rounded-lg shadow-md;
+  @apply flex flex-col justify-center items-center w-fit bg-white dark:bg-gray-700 rounded-lg shadow-md;
 }
 .heading {
-  @apply text-3xl m-2 font-bold mb-4 text-gray-800 dark:text-gray-200;
+  @apply text-xl mb-0 sm:text-3xl sm:m-2 font-bold sm:mb-4 text-gray-800 dark:text-gray-200;
 }

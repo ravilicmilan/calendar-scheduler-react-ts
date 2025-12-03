@@ -1,23 +1,44 @@
 @import 'tailwindcss';
 
 .calendar-table {
-  @apply w-full border-collapse min-h-[720px] min-w-[980px];
+  // @apply border-collapse h-full w-screen lg:w-[90vw];
+  @apply flex flex-col h-full w-full justify-center items-center;
+}
+.table-heading {
+  @apply flex w-full h-auto;
+}
+.table-row {
+  @apply grid grid-cols-7 w-full lg:gap-0.5 lg:my-0.5;
 }
 .day-heading {
-  @apply p-2 text-center bg-blue-950 dark:bg-blue-950 text-white dark:text-white;
+  @apply flex flex-col justify-center items-center
+  p-0 sm:p-2 text-[7px] sm:text-sm text-center
+  bg-blue-950 dark:bg-blue-950 text-white dark:text-white;
 }
-.calendar-table td {
-  @apply w-[140px] h-[120px]  cursor-pointer p-0.5;
-}
+
 .day {
-  @apply flex flex-col w-full h-full justify-start border rounded-sm items-end p-2 text-center text-gray-800 dark:text-gray-200 hover:border-blue-600;
+  @apply flex flex-col  justify-start items-center
+  w-full min-w-[calc(1/7*100vw)] md:min-w-[calc(1/7*90vw)]
+  min-h-[98px] sm:min-h-[120px]
+  p-0 sm:p-0.5 
+  cursor-pointer
+  border rounded-sm  
+  text-xs sm:text-base  
+  text-center text-gray-800 
+  dark:text-gray-200 hover:border-blue-600;
+}
+.day-of-month {
+  @apply flex w-full justify-end  text-xs sm:text-sm lg:text-lg;
 }
 .day-blank {
-  @apply bg-gray-200 dark:bg-gray-600 cursor-auto;
+  @apply bg-gray-200 text-gray-500 dark:bg-gray-600  cursor-auto;
 }
 .current-day {
   @apply bg-blue-100 border-2 font-bold;
 }
 .day-weekend {
   @apply text-red-600;
+}
+.day-blank.day-weekend {
+  @apply text-red-300;
 }

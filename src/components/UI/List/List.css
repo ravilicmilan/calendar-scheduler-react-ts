@@ -1,5 +1,5 @@
 @import 'tailwindcss';
 
 .list {
-  @apply w-full;
+  @apply flex flex-col h-full justify-start items-center w-full;
 }
