@@ -26,6 +26,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
   const listRef = useRef<HTMLDivElement | null>(null);
   const [scheduleRects, setScheduleRects] = useState<RectType[]>([]);
   const [delta, setDelta] = useState(0);
+  const canDrop = useRef(false);
 
   const getScheduleRects = (): RectType[] => {
     const arr: RectType[] = [];
@@ -43,16 +44,18 @@ export default function DailySchedule(props: DailyScheduleProps) {
       let isColliding = false;
       scheduleRects.some((rect) => {
         if (
-          (rect.top < top && top < rect.bottom) ||
-          (rect.top < bottom && bottom < rect.bottom) ||
-          (top < rect.top && rect.bottom < bottom)
+          draggedItem &&
+          parseInt(draggedItem.meetingId) !== rect.id &&
+          ((rect.top < top && top < rect.bottom) ||
+            (rect.top < bottom && bottom < rect.bottom) ||
+            (top < rect.top && rect.bottom < bottom))
         ) {
           isColliding = true;
         }
       });
       return isColliding;
     },
-    [scheduleRects]
+    [scheduleRects, draggedItem]
   );
 
   const handleNewEntry = () => {
@@ -135,8 +138,10 @@ export default function DailySchedule(props: DailyScheduleProps) {
         const isColliding = checkCollision(t, b);
         if (isColliding) {
           div.classList.add('stop');
+          canDrop.current = false;
         } else {
           div.classList.remove('stop');
+          canDrop.current = true;
         }
 
         // div.innerHTML = `${t} ${b}`;
@@ -147,6 +152,14 @@ export default function DailySchedule(props: DailyScheduleProps) {
 
   const onMouseUp = useCallback(() => {
     isMoved.current = false;
+
+    if (!canDrop.current) {
+      if (moverRef && moverRef.current) {
+        moverRef.current.style.display = 'none';
+      }
+
+      return false;
+    }
 
     if (moverRef.current && listRef.current && draggedItem) {
       const mover = moverRef.current;
