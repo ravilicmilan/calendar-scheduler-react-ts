@@ -62,6 +62,7 @@ export default function Table() {
 
     for (let week = 0; week < 6; week++) {
       const days = [];
+      let totalBlankDays = 0;
       for (let day = 0; day < 7; day++) {
         let scheduleForDay: ScheduleType[] = [];
         let dateString = '';
@@ -80,9 +81,37 @@ export default function Table() {
         }
 
         if (dayOfMonth < 1 || dayOfMonth > daysInMonth) {
+          let str = '';
+
+          if (dayOfMonth < 1) {
+            let prevMonth: number;
+            let prevYear: number;
+
+            if (monthIndex === 0) {
+              prevYear = year - 1;
+              prevMonth = 11;
+            } else {
+              prevMonth = monthIndex - 1;
+              prevYear = year;
+            }
+
+            const totalDaysInPrevMonth = new Date(
+              prevYear,
+              prevMonth + 1,
+              0
+            ).getDate();
+
+            str = String(Math.abs(dayOfMonth + totalDaysInPrevMonth));
+          }
+
+          if (dayOfMonth > daysInMonth) {
+            str = String(totalBlankDays + 1);
+          }
+
+          totalBlankDays++;
           days.push(
             <td key={day}>
-              <div className={blankDayClasses}></div>
+              <div className={blankDayClasses}>{str}</div>
             </td>
           );
           continue;
@@ -127,7 +156,9 @@ export default function Table() {
           </td>
         );
       }
-      weeks.push(<tr key={week}>{days}</tr>);
+      if (totalBlankDays < 7) {
+        weeks.push(<tr key={week}>{days}</tr>);
+      }
     }
     return weeks;
   };
