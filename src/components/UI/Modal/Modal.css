@@ -1,7 +1,9 @@
 @import 'tailwindcss';
+
 .modal-wrapper {
   @apply fixed flex flex-col justify-center items-center 
-  inset-0 size-auto max-h-none max-w-none 
+  inset-0  w-screen h-screen 
+  md:size-auto md:max-h-none md:max-w-none 
   overflow-y-auto bg-transparent backdrop:bg-transparent;
 }
 .modal-backdrop {
@@ -12,7 +14,7 @@
 }
 
 .modal-content {
-  @apply bg-white px-4 py-1 sm:p-6 sm:pb-4 w-full h-full;
+  @apply bg-white px-2 py-1 sm:p-6 sm:pb-4 w-full h-full;
 }
 .modal-inner {
   @apply relative transform overflow-hidden rounded-lg bg-white 
@@ -26,7 +28,7 @@
   @apply border-b  border-gray-200 flex justify-between items-center;
 }
 .modal-title {
-  @apply text-xl font-semibold text-gray-800;
+  @apply text-sm md:text-xl font-semibold text-gray-800;
 }
 .modal-body {
   @apply mb-4 text-gray-700 dark:text-gray-300;

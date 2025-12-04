@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type TouchEvent,
+} from 'react';
 import type { ScheduleType } from '../../types/api';
 import type { DailyScheduleProps, RectType } from '../../types/components';
 import './DailySchedule.css';
@@ -90,7 +96,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
   };
 
   const onMouseDown = (
-    e: React.MouseEvent<HTMLDivElement>,
+    e: React.MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
     item: ScheduleType
   ) => {
     const target = e.target as HTMLElement;
@@ -99,8 +105,25 @@ export default function DailySchedule(props: DailyScheduleProps) {
       return false;
     }
 
+    let clientY: number;
+
+    if ('touches' in e) {
+      const modal = document.getElementById('modal-children');
+      if (modal) {
+        modal.style.overflowY = 'hidden';
+      }
+      if (e.touches && e.touches.length > 0) {
+        clientY = e.touches[0].clientY;
+      } else {
+        return;
+      }
+    } else {
+      clientY = e.clientY;
+    }
+
     isMoved.current = true;
-    //console.log('START MOVE', e.target);
+
+    // console.log('START MOVE', e.target);
     if (scheduleRects.length === 0) {
       setScheduleRects(getScheduleRects());
     }
@@ -109,7 +132,8 @@ export default function DailySchedule(props: DailyScheduleProps) {
       setDraggedItem(item);
       const div = e.currentTarget as HTMLElement;
       const rect = div.getBoundingClientRect();
-      const dy = e.clientY - rect.top;
+      const dy = clientY - rect.top;
+
       setDelta(dy);
       const parentList = listRef.current as HTMLElement;
       const parentRect = parentList.getBoundingClientRect();
@@ -123,17 +147,29 @@ export default function DailySchedule(props: DailyScheduleProps) {
   };
 
   const onMouseMove = useCallback(
-    (e: MouseEvent) => {
+    (e: globalThis.MouseEvent | globalThis.TouchEvent) => {
+      let clientY: number;
+
+      if ('touches' in e) {
+        if (e.touches && e.touches.length > 0) {
+          clientY = e.touches[0].clientY;
+        } else {
+          return;
+        }
+      } else {
+        clientY = e.clientY;
+      }
+
       if (isMoved.current && moverRef.current && listRef.current) {
-        // console.log('MOVING', e.clientY, delta);
+        // console.log('MOVING', clientY, delta);
         const parentList = listRef.current;
         const div = moverRef.current;
         const rect = div.getBoundingClientRect();
         const parentRect = parentList.getBoundingClientRect();
-        const top = e.clientY - parentRect.top - delta;
+        const top = clientY - parentRect.top - delta;
         div.style.top = `${top}px`;
 
-        const t = e.clientY - delta;
+        const t = clientY - delta;
         const b = t + rect.height;
         const isColliding = checkCollision(t, b);
         if (isColliding) {
@@ -152,6 +188,11 @@ export default function DailySchedule(props: DailyScheduleProps) {
 
   const onMouseUp = useCallback(() => {
     isMoved.current = false;
+
+    const modal = document.getElementById('modal-children');
+    if (modal) {
+      modal.style.overflowY = 'auto';
+    }
 
     if (!canDrop.current) {
       if (moverRef && moverRef.current) {
@@ -200,15 +241,37 @@ export default function DailySchedule(props: DailyScheduleProps) {
     setDraggedItem(null);
   }, [draggedItem, updateSchedule]);
 
+  const disableContextMenuOnMobile = (e: MouseEvent) => {
+    e.preventDefault();
+  };
+
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
 
+    window.addEventListener('touchmove', onMouseMove, { passive: false });
+    window.addEventListener('touchend', onMouseUp);
+
+    window.addEventListener('contextmenu', disableContextMenuOnMobile);
+
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
+
+      window.removeEventListener('touchmove', onMouseMove);
+      window.removeEventListener('touchend', onMouseUp);
+      window.removeEventListener('contextmenu', disableContextMenuOnMobile);
     };
   }, [onMouseMove, onMouseUp]);
+
+  const handleItemClick = (item: ScheduleType) => {
+    const id = `buttons-wrapper-${item.meetingId}`;
+    const div = document.getElementById(id);
+    if (div && window.innerWidth < 600) {
+      console.log('NA MOBILNOM JE::');
+      div.classList.toggle('daily-schedule-buttons-show');
+    }
+  };
 
   const renderButtons = () => {
     return (
@@ -235,6 +298,9 @@ export default function DailySchedule(props: DailyScheduleProps) {
   const renderShortList = () => {
     return dailySchedule.map((item, idx) => (
       <div
+        onClick={() => {
+          handleItemClick(item);
+        }}
         key={idx}
         className={`daily-schedule-item priority-${item.priority}`}
       >
@@ -248,7 +314,10 @@ export default function DailySchedule(props: DailyScheduleProps) {
             <span className='font-bold'>{item.title}</span>
             <span>{item.description}</span>
           </div>
-          <div className='daily-schedule-item-buttons-wrapper'>
+          <div
+            id={`buttons-wrapper-${item.meetingId}`}
+            className='daily-schedule-item-buttons-wrapper'
+          >
             <Button
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 editSchedule(e, item);
@@ -320,6 +389,9 @@ export default function DailySchedule(props: DailyScheduleProps) {
           key={idx}
           id={item.meetingId}
           onMouseDown={(e) => {
+            onMouseDown(e, item);
+          }}
+          onTouchStart={(e) => {
             onMouseDown(e, item);
           }}
           className={`daily-schedule-item-draggable `}

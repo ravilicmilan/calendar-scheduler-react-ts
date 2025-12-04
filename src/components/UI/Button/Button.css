@@ -17,7 +17,7 @@
   @apply px-2 py-0 text-sm;
 }
 .btn-medium {
-  @apply px-2.5 py-0.5 text-lg;
+  @apply px-2.5 py-0.5 text-sm md:text-lg;
 }
 .btn-large {
   @apply px-2 py-1 text-base sm:px-4 sm:py-2 sm:text-3xl font-bold;

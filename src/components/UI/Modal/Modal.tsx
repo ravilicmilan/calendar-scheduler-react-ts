@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from '../../../store/app-store';
 import type { ModalProps } from '../../../types/components';
 import Button from '../Button/Button';
@@ -6,6 +7,14 @@ import './Modal.css';
 export default function Modal({ children, title }: ModalProps) {
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, []);
 
   const handleCloseModal = () => {
     if (modal.variant === 'form') {
@@ -30,7 +39,9 @@ export default function Modal({ children, title }: ModalProps) {
             {title && <h2 className='modal-title'>{title}</h2>}
             <Button onClick={handleCloseModal} size='medium' variant='close' />
           </div>
-          <div className='modal-children'>{children}</div>
+          <div id='modal-children' className='modal-children'>
+            {children}
+          </div>
         </div>
       </div>
     </div>
