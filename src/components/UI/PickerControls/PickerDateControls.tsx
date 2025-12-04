@@ -6,7 +6,7 @@ export default function PickerDateControls(props: PickerDateControlsProps) {
   const { dateTitle, goToPrevMonth, goToNextMonth } = props;
 
   const renderTableHeadings = () => {
-    const arr = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    const arr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     return arr.map((item, idx) => (
       <span key={idx} className='picker-controls-headings'>
         {item}

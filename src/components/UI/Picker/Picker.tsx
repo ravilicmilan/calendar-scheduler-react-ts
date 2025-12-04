@@ -22,10 +22,19 @@ export default function Picker(props: PickerProps) {
       const elRect = picker.el.getBoundingClientRect();
       const pickerRect = pickerRef.current.getBoundingClientRect();
       const triangleRect = triangleRef.current.getBoundingClientRect();
-      setCoords({
-        top: elRect.bottom + 10,
-        left: elRect.left + elRect.width / 2 - pickerRect.width / 2,
-      });
+      if (window.innerWidth > 700) {
+        setCoords({
+          top: elRect.bottom + 10,
+          left: elRect.left + elRect.width / 2 - pickerRect.width / 2,
+        });
+      } else {
+        console.log('KOLIKO JE OVO???', window.innerHeight, pickerRect);
+        setCoords({
+          top: window.innerHeight / 2 - pickerRect.height / 2,
+          left: 0,
+        });
+      }
+
       triangleRef.current.style.top = `-4px`;
       triangleRef.current.style.left = `${
         pickerRect.width / 2 - triangleRect.width / 2

@@ -4,16 +4,16 @@
   @apply fixed flex flex-col justify-center items-center  rounded-md bg-white z-50 border shadow-lg shadow-black;
 }
 .picker-background {
-  @apply fixed inset-0 bg-transparent;
+  @apply fixed  inset-0 bg-gray-950 opacity-50  md:bg-transparent;
 }
 .picker-wrapper-large {
-  @apply w-100 h-60;
+  @apply w-screen h-70 md:w-100 md:h-60;
 }
 .picker-wrapper-small {
-  @apply w-30 h-60;
+  @apply w-screen h-70 md:w-30 md:h-60;
 }
 .picker-header {
-  @apply flex flex-col justify-center items-center w-full text-lg border-b-gray-300;
+  @apply flex flex-col justify-center items-center w-full text-base md:text-lg border-b-gray-300;
 }
 .picker-items-large {
   @apply flex justify-between items-center flex-wrap w-full h-full;
@@ -22,13 +22,17 @@
   @apply flex flex-col justify-center items-center w-full h-full;
 }
 .picker-item-inline {
-  @apply flex flex-col justify-center items-center px-4 py-2 cursor-pointer hover:bg-gray-300 transition-colors duration-300;
+  @apply flex flex-col justify-center items-center px-4 py-2 
+  cursor-pointer hover:bg-gray-300 transition-colors duration-300;
 }
 .picker-item-inline-smaller {
-  @apply flex flex-col justify-center items-center px-2.5 py-1 cursor-pointer hover:bg-gray-300 transition-colors duration-300;
+  @apply flex flex-col justify-center items-center px-2.5 py-1 
+  cursor-pointer hover:bg-gray-300 transition-colors duration-300;
 }
 .picker-item-inline-grid {
-  @apply flex flex-col justify-center items-center px-2.5 py-0.5 cursor-pointer hover:bg-gray-300 transition-colors duration-300;
+  @apply flex flex-col justify-center items-center 
+  px-2.5 py-1 md:py-0.5 cursor-pointer 
+  hover:bg-gray-300 transition-colors duration-300;
 }
 .picker-items-grid-date {
   @apply grid grid-cols-7 grid-rows-6 w-full;
@@ -46,7 +50,7 @@
   @apply flex flex-col justify-center items-center w-full px-4 py-2 cursor-pointer transition-colors duration-100;
 }
 .triangle-up {
-  @apply flex absolute  w-2 h-2 bg-white border-t border-l rotate-45;
+  @apply hidden md:flex absolute  w-2 h-2 bg-white border-t border-l rotate-45;
 }
 
 .picker-selected-item {

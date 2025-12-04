@@ -4,24 +4,24 @@
   @apply flex flex-col justify-center items-center w-full h-full;
 }
 .card-title {
-  @apply text-2xl m-3;
+  @apply text-lg md:text-2xl m-1 md:m-3;
 }
 .card-description {
-  @apply m-3;
+  @apply text-sm md:text-lg m-3;
 }
 .card-date {
-  @apply m-2;
+  @apply text-sm md:text-base m-2;
 }
 .card-time-wrapper {
   @apply flex justify-around items-center w-full;
 }
 .card-start-time,
 .card-end-time {
-  @apply p-4 border rounded-sm;
+  @apply text-sm md:text-base p-2 md:p-4 border rounded-sm;
 }
 .row {
   @apply flex justify-around items-center w-full;
 }
 .card-priority {
-  @apply py-2 px-3 rounded-sm;
+  @apply text-sm md:text-base py-2 px-3 rounded-sm;
 }
