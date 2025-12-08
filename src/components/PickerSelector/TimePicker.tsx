@@ -28,6 +28,22 @@ export default function TimePicker() {
             for (let i = 0; i <= idx; i++) {
               data[i].availableForEnd = false;
             }
+            let nextIdx;
+            for (let i = 0; i < data.length; i++) {
+              if (!data[i].availableForStart && data[i].time > value) {
+                nextIdx = i;
+                break;
+              }
+            }
+            if (nextIdx) {
+              for (let i = nextIdx; i < data.length; i++) {
+                data[i].availableForEnd = false;
+              }
+              for (let i = idx + 1; i <= nextIdx; i++) {
+                data[i].availableForEnd = true;
+              }
+            }
+
             dispatch({ timeAvailableSlots: data });
           }
         }

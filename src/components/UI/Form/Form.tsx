@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './Form.css';
 import { useDispatch, useSelector } from '../../../store/app-store';
 import Button from '../Button/Button';
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { FormProps, FormType } from '../../../types/components';
 import { checkForAvailableTimes, getScheduleByDate } from '../../../utils/api';
 import type { ScheduleType } from '../../../types/api';
@@ -12,36 +13,28 @@ export default function Form(props: FormProps) {
   const dispatch = useDispatch();
   const { title, description, startTime, date, endTime, priority } = formEntry;
   const dailySchedule = getScheduleByDate(scheduleData, date);
+
   const { updateSchedule } = props;
   const priorityRef = useRef<HTMLElement | null>(null);
   const startTimeRef = useRef<HTMLElement | null>(null);
   const endTimeRef = useRef<HTMLElement | null>(null);
   const dateRef = useRef<HTMLElement | null>(null);
 
-  const setAvailableTimeSlots = useCallback(() => {
-    const data = checkForAvailableTimes(dailySchedule);
-
-    if (startTime !== '00:00') {
-      const idx = data.findIndex((d) => d.time === startTime);
-      if (idx !== -1) {
-        for (let i = 0; i <= idx; i++) {
-          data[i].availableForEnd = false;
-        }
-      }
-    }
-    dispatch({ timeAvailableSlots: data });
-  }, [dailySchedule, dispatch, startTime]);
-
   useEffect(() => {
+    const setAvailableTimeSlots = () => {
+      const data = checkForAvailableTimes(dailySchedule);
+
+      dispatch({ timeAvailableSlots: data });
+    };
     setAvailableTimeSlots();
-  }, [setAvailableTimeSlots]);
+  }, []);
 
   const validateForm = () => {
     return (
       startTime !== '00:00' &&
       endTime !== '00:00' &&
-      title !== '' &&
-      description !== '' &&
+      title.trim() !== '' &&
+      description.trim() !== '' &&
       date !== ''
     );
   };

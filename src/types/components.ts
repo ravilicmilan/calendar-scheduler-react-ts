@@ -103,7 +103,7 @@ export type FormType = {
   startTime: string;
   endTime: string;
   date: string;
-  description?: string;
+  description: string;
   priority: PriorityType;
   isEdit: boolean;
 };
