@@ -33,6 +33,7 @@ export default function Form(props: FormProps) {
     return (
       startTime !== '00:00' &&
       endTime !== '00:00' &&
+      startTime !== endTime &&
       title.trim() !== '' &&
       description.trim() !== '' &&
       date !== ''
@@ -61,7 +62,7 @@ export default function Form(props: FormProps) {
   const saveSchedule = () => {
     const item = { ...formEntry };
     if (!item.isEdit) {
-      item.meetingId = String(Math.round(Math.random() * 10000000000000));
+      item.id = Math.round(Math.random() * 10000000000000);
     }
     const obj: ScheduleType = { ...item, date };
     updateSchedule(obj);

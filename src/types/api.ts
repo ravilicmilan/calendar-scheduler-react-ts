@@ -1,12 +1,12 @@
 export type PriorityType = 'very-low' | 'low' | 'normal' | 'high' | 'very-high';
 
 export type ScheduleType = {
-  meetingId: string;
+  id: number;
   title: string;
   date: string;
   startTime: string;
   endTime: string;
-  description?: string;
+  description: string;
   priority: PriorityType;
 };
 

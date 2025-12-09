@@ -26,7 +26,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
   const dispatch = useDispatch();
   const [draggedItem, setDraggedItem] = useState<ScheduleType | null>(null);
   const isMoved = useRef(false);
-  const { dailySchedule, updateSchedule, deleteSchedule } = props;
+  const { dailySchedule, moveCurrentSchedule, deleteSchedule } = props;
   const timeStringArr = getTimeStringArr();
   const moverRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
@@ -48,17 +48,21 @@ export default function DailySchedule(props: DailyScheduleProps) {
   const checkCollision = useCallback(
     (top: number, bottom: number) => {
       let isColliding = false;
-      scheduleRects.some((rect) => {
+
+      for (let i = 0; i < scheduleRects.length; i++) {
+        const rect = scheduleRects[i];
         if (
           draggedItem &&
-          parseInt(draggedItem.meetingId) !== rect.id &&
+          draggedItem.id !== rect.id &&
           ((rect.top < top && top < rect.bottom) ||
             (rect.top < bottom && bottom < rect.bottom) ||
             (top < rect.top && rect.bottom < bottom))
         ) {
           isColliding = true;
+          break;
         }
-      });
+      }
+
       return isColliding;
     },
     [scheduleRects, draggedItem]
@@ -92,7 +96,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
     e.preventDefault();
     e.stopPropagation();
     // console.log('DELETE !!!', item);
-    deleteSchedule(item.meetingId);
+    deleteSchedule(item.id);
   };
 
   const onMouseDown = (
@@ -225,13 +229,11 @@ export default function DailySchedule(props: DailyScheduleProps) {
       updatedItem.startTime = newTimes.startTime;
       updatedItem.endTime = newTimes.endTime;
 
-      updateSchedule(updatedItem);
+      moveCurrentSchedule(updatedItem);
 
       setScheduleRects((prev) => {
         const arr = [...prev];
-        const idx = arr.findIndex(
-          (a) => a.id === Number(draggedItem.meetingId)
-        );
+        const idx = arr.findIndex((a) => a.id === Number(draggedItem.id));
         if (idx !== -1) {
           arr[idx] = { id: arr[idx].id, top: rect.top, bottom: rect.bottom };
         }
@@ -239,7 +241,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
       });
     }
     setDraggedItem(null);
-  }, [draggedItem, updateSchedule]);
+  }, [draggedItem, moveCurrentSchedule]);
 
   const disableContextMenuOnMobile = (e: MouseEvent) => {
     e.preventDefault();
@@ -265,7 +267,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
   }, [onMouseMove, onMouseUp]);
 
   const handleItemClick = (item: ScheduleType) => {
-    const id = `buttons-wrapper-${item.meetingId}`;
+    const id = `buttons-wrapper-${item.id}`;
     const div = document.getElementById(id);
     if (div && window.innerWidth < 600) {
       console.log('NA MOBILNOM JE::');
@@ -315,7 +317,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
             <span>{item.description}</span>
           </div>
           <div
-            id={`buttons-wrapper-${item.meetingId}`}
+            id={`buttons-wrapper-${item.id}`}
             className='daily-schedule-item-buttons-wrapper'
           >
             <Button
@@ -387,7 +389,7 @@ export default function DailySchedule(props: DailyScheduleProps) {
       return (
         <div
           key={idx}
-          id={item.meetingId}
+          id={'${item.id}'}
           onMouseDown={(e) => {
             onMouseDown(e, item);
           }}

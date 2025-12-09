@@ -72,22 +72,29 @@ export function buildScheduleTimeArr(data: ScheduleType[]): TimeScheduleType[] {
 export function checkFreeSlotTime(
   schedule: ScheduleType[],
   startTime: string,
-  endTime: string
+  endTime: string,
+  id: number | undefined
 ): boolean {
   let available = true;
   const startMinutes = timeToMinutes(strToTime(startTime));
   const endMinutes = timeToMinutes(strToTime(endTime));
 
-  schedule.some((item) => {
+  for (let i = 0; i < schedule.length; i++) {
+    const item = schedule[i];
     const itemStartTime = timeToMinutes(strToTime(item.startTime));
     const itemEndTime = timeToMinutes(strToTime(item.endTime));
+
     if (
-      (itemStartTime <= startMinutes && startMinutes <= itemEndTime) ||
-      (itemStartTime <= endMinutes && endMinutes <= itemEndTime)
+      (itemStartTime < startMinutes && startMinutes < itemEndTime) ||
+      (itemStartTime < endMinutes && endMinutes < itemEndTime) ||
+      (startMinutes < itemStartTime && itemEndTime < endMinutes)
     ) {
-      available = false;
+      if (!id || (id && id !== item.id)) {
+        available = false;
+        break;
+      }
     }
-  });
+  }
 
   return available;
 }
@@ -141,7 +148,7 @@ export function resetEntry(dateInput: string | undefined): FormType {
   }
 
   return {
-    meetingId: '',
+    id: '',
     title: '',
     date: dateStr,
     description: '',

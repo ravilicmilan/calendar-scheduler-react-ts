@@ -1,6 +1,6 @@
 [
   {
-    "meetingId": "1",
+    "id": "1",
     "title": "Project Kickoff",
     "date": "2025-12-18",
     "startTime": "10:00",
@@ -9,7 +9,7 @@
     "description": "Initial meeting to discuss project scope and deliverables."
   },
   {
-    "meetingId": "2",
+    "id": "2",
     "title": "Design Review",
     "date": "2025-12-19",
     "startTime": "14:00",
@@ -18,7 +18,7 @@
     "description": "Review of the initial design concepts with the design team."
   },
   {
-    "meetingId": "3",
+    "id": "3",
     "title": "Sprint Planning",
     "date": "2025-12-22",
     "startTime": "09:00",
@@ -27,7 +27,7 @@
     "description": "Planning session for the upcoming development sprint."
   },
   {
-    "meetingId": "4",
+    "id": "4",
     "title": "Client Presentation",
     "date": "2025-12-23",
     "startTime": "11:00",
@@ -36,7 +36,7 @@
     "description": "Presentation of the project progress to the client."
   },
   {
-    "meetingId": "5",
+    "id": "5",
     "title": "Team Retrospective",
     "date": "2025-12-24",
     "startTime": "16:00",
@@ -45,7 +45,7 @@
     "description": "Reflecting on the past sprint and discussing improvements."
   },
   {
-    "meetingId": "6",
+    "id": "6",
     "title": "Staff meeting",
     "date": "2025-12-25",
     "startTime": "08:00",
@@ -54,7 +54,7 @@
     "description": "We need to figure out what to do about that marketing thing."
   },
   {
-    "meetingId": "7",
+    "id": "7",
     "title": "Marketing Strategy Meeting",
     "date": "2025-12-25",
     "startTime": "13:00",
@@ -63,7 +63,7 @@
     "description": "Discussing marketing strategies for the upcoming product launch."
   },
   {
-    "meetingId": "8",
+    "id": "8",
     "title": "Relax and chill",
     "date": "2025-12-25",
     "startTime": "16:00",
@@ -72,7 +72,7 @@
     "description": "We should chill out after long and ardous meeting with marketing."
   },
   {
-    "meetingId": "9",
+    "id": "9",
     "title": "Dinner at restaurant",
     "date": "2025-12-25",
     "startTime": "19:00",

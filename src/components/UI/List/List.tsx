@@ -23,7 +23,7 @@ export default function List(props: ListProps) {
 
     schedule.some((item, idx) => {
       if (idx < 2) {
-        arr.push(<ListItem key={item.meetingId} schedule={item} />);
+        arr.push(<ListItem key={idx} schedule={item} />);
         return false;
       } else {
         const text = `${len - idx}+ more`;

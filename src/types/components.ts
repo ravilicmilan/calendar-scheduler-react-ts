@@ -74,12 +74,12 @@ export type ModalType = {
 
 export type DailyScheduleProps = {
   dailySchedule: ScheduleType[];
-  updateSchedule: (dailySchedule: ScheduleType) => void;
-  deleteSchedule: (id: string) => void;
+  moveCurrentSchedule: (dailySchedule: ScheduleType) => void;
+  deleteSchedule: (id: number) => void;
 };
 
 export type FormProps = {
-  updateSchedule: (item: ScheduleType) => void;
+  updateSchedule: (item: FormType) => void;
 };
 
 export type ButtonType = {
@@ -98,14 +98,14 @@ export type RectType = {
 };
 
 export type FormType = {
-  meetingId: string;
+  id: number;
   title: string;
   startTime: string;
   endTime: string;
   date: string;
   description: string;
   priority: PriorityType;
-  isEdit: boolean;
+  isEdit?: boolean;
 };
 
 export type PickerTimeProps = {
