@@ -22,7 +22,7 @@ export default function List(props: ListProps) {
     const arr: ReactNode[] = [];
 
     schedule.some((item, idx) => {
-      if (idx < 2) {
+      if (idx < 2 || len <= 3) {
         arr.push(<ListItem key={idx} schedule={item} />);
         return false;
       } else {

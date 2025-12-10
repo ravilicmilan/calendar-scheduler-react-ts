@@ -229,11 +229,19 @@ export default function DailySchedule(props: DailyScheduleProps) {
       updatedItem.startTime = newTimes.startTime;
       updatedItem.endTime = newTimes.endTime;
 
+      if (
+        updatedItem.startTime === draggedItem.startTime &&
+        updatedItem.endTime === draggedItem.endTime
+      ) {
+        // console.log('BACK TO SAME POSITION DO NOTHING!!');
+        return false;
+      }
+
       moveCurrentSchedule(updatedItem);
 
       setScheduleRects((prev) => {
         const arr = [...prev];
-        const idx = arr.findIndex((a) => a.id === Number(draggedItem.id));
+        const idx = arr.findIndex((a) => a.id === draggedItem.id);
         if (idx !== -1) {
           arr[idx] = { id: arr[idx].id, top: rect.top, bottom: rect.bottom };
         }

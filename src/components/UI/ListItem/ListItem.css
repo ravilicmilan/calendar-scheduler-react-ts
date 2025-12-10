@@ -2,7 +2,7 @@
 
 .list-item {
   @apply flex justify-center items-center 
-  rounded-sm max-w-30 
+  rounded-sm  
   w-full h-auto text-sm;
 }
 .list-item-title {

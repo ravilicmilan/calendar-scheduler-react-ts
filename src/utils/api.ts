@@ -148,7 +148,7 @@ export function resetEntry(dateInput: string | undefined): FormType {
   }
 
   return {
-    id: '',
+    id: -1,
     title: '',
     date: dateStr,
     description: '',
